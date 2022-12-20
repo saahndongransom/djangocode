@@ -1,0 +1,31 @@
+{% extends 'soniablog/base.html' %} 
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 card mb-4  mt-3 left  top">
+      <div class="card-body">
+        <h1>{% block title %} {{ object.title }} {% endblock title %}</h1>
+        <p class=" text-muted">{{ post.author }} | {{ post.created_on }}</p>
+        <p class="card-text ">{{ object.content | safe }}</p>
+        <h1>comments</h1>
+        {% if not post.comments.all %}
+        No comments yet....<a href="#">
+          Add one</a>
+          {% else %}
+          {% for comment in Post.comments.all %}
+        <strong>
+          {{ comment.name }}--
+          {{ comment.date_added}}
+        </strong>
+        <br/>
+        {{ comment.content }}
+        {% endfor %}
+          {% endif %}
+      </div>
+    </div>
+    {% block sidebar %} {% include 'soniablog/sidebar.html' %} {% endblock sidebar %}
+  </div>
+</div>
+
+{% endblock content %}
