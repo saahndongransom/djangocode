@@ -1,0 +1,18 @@
+{% extends 'soniablog/base.html'%}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+{% load social_share %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Me!</title>
+</head>
+{% post_to_facebook object_or_url "Post to Facebook!" %}
+{% post_to_whatsapp  object_or_url "Share To WA" %}
+{% post_to_reddit  object_or_url "Share To Reddit" %}
+<body>
+</body>
+</html>
+
+{% endblock content %}

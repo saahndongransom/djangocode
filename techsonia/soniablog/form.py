@@ -2,6 +2,9 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from tinymce.widgets import TinyMCE
+from soniablog.models import Comment
+from .models import Post
+
 
 
 def should_be_empty(value):
@@ -28,6 +31,34 @@ class NewsletterForm(forms.Form):
     subject = forms.CharField()
     receivers = forms.CharField()
     message = forms.CharField(widget=TinyMCE(), label="Email content")
+
+
+    class Meta:
+        fields = ('content', )
+
+
+class CommentForm(forms.ModelForm):
+    content = forms.CharField(widget=forms.Textarea(attrs={
+        'class': 'md-textarea form-control',
+        'placeholder': 'comment here ...',
+        'rows': '4',
+    }))
+
+    class Meta:
+        model = Comment
+        fields = ('content', )
+        
+
+   
+
+class PostForm(forms.ModelForm):
+   class Meta:
+        model = Post
+        fields = [
+            'title',
+            'content',
+            'tags',
+        ]
     
 
 

@@ -1,3 +1,4 @@
+{% load static %}
 {% block sidebar %}
 
 <style>
@@ -12,13 +13,23 @@
     <h5 class="card-header">About</h5>
     <div class="card-body">
       <p class="card-text"> NEWHATCH tech is a technology start-up that it's primary focus is in transforming our selves from just  being a   piece of creature to be a creator our selves by creating what we really care for because we are the creator in many ways. </p>
-      <a href="site.html" class="btn btn-danger">Visit Website!</a>
+      <a href="newhatchtech.html" class="btn btn-danger">Visit Website!</a>
       <a href="https://web.facebook.com/saah.ransomm/" class="btn btn-secondary">Newhatch facebook</a>
-      
     </div>
-  </div>
-  <h1>subcribe</h1>
+  </div> 
+ <h1> <a href="site.html">buy me coffe</a></h1>
+ <h1>Show me the money!</h1>
+ <li class="nav-item text-black">
+ <h1> <a class="nav-link text-black font-weight-bold" href="{% url 'feli' %}">feli</a> </h1>
+</li>
+<div class="image">
+  
+  <a href="feli.html"><img src="{% static 'images/cof.png' length %}"></a>
+</div><!-- end image-->
+<!-- writes out the form tag automatically -->
+
 </div>
+
 
 
 {% endblock sidebar %}

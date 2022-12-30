@@ -1,7 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
-from django.utils import timezone
+from django.utils import timezone 
+from taggit.managers import TaggableManager
+
+
+
 
 # create a tuple for the status of each post
 STATUS = (
@@ -20,6 +24,9 @@ class Post(models.Model):
     content =RichTextField(blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
+    tags = TaggableManager()
+   
+    
 
     # this class contains metadata and uses the created_on field from the model to sort out data which sorts
     # in descending order by default
@@ -40,7 +47,6 @@ class Comment(models.Model):
 def __str__(self):
     return '%s - %s' % (self.Post.title, self.name)
 
-
 class SubscribedUsers(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(unique=True, max_length=100)
@@ -57,3 +63,10 @@ class CustomUser(models.Model):
     def __str__(self):
         return self.email
     
+
+class Order(models.Model):
+    pass
+
+def get_readtime(self):
+    result = readtime.of_text(self.content)
+    return result.text

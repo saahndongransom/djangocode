@@ -1,4 +1,8 @@
 {% extends 'soniablog/base.html' %} 
+{% load comments %}
+{% load comments_xtd %}
+{% load static %}
+{% load social_share %}
 {% block content %}
 
 <div class="container">
@@ -8,24 +12,112 @@
         <h1>{% block title %} {{ object.title }} {% endblock title %}</h1>
         <p class=" text-muted">{{ post.author }} | {{ post.created_on }}</p>
         <p class="card-text ">{{ object.content | safe }}</p>
-        <h1>comments</h1>
-        {% if not post.comments.all %}
-        No comments yet....<a href="#">
-          Add one</a>
-          {% else %}
-          {% for comment in Post.comments.all %}
-        <strong>
-          {{ comment.name }}--
-          {{ comment.date_added}}
-        </strong>
-        <br/>
-        {{ comment.content }}
-        {% endfor %}
-          {% endif %}
+      
+        tags- {{post.tags.all}} <br>
+       
+       
+        <div class="Tags gap-xy-2 text-center mt-6 ">
+            {% for cat in post.categories.all %}
+            <a href="# " class="badge badge-pill badge-secondry "> {{cat}}</a> {% endfor %}
+        </div>
+
+<h1>
+    
+    {% post_to_facebook object_or_url "Post to Facebook!" %}
+{% post_to_whatsapp  object_or_url "Share To whatsapp" %}
+{% post_to_reddit  object_or_url "Share To Reddit" %}  
+
+</h1>
+
+        <!--Start somilar posts-->
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <h3>Similar Posts</h3>
+            </div>
+        </div>
+
+        <div class="row">
+           
+           {% for post in similar_posts %}
+            <div class="col-lg-4 col-md-6 col-sl-12 p-3">
+                <div class="border rounded">
+                    <small class="text-primary mt-2 p-4">{{post.title}}</small>
+                    <p class="p-4">{{post.overview|safe|slice:":150"}}<b>[...]</b></p>
+                    <a href="{{post.post_link}}" class="p-4">Read More <i class="mdi mdi-cheveron-right"></i> </a>
+                    <div class="border-top p-3 mt-3 d-flex">
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt=""
+                            style="max-width:50px;max-height:50px;" class="rounded-pill img-fluid mr-3">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <h6>{{post.author.user.username|title}}</h6>
+                            </div>
+                            <div class="form-group ml-5">
+                                <small>{{post.date|date}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        
+        </div>
+       
+        <!--comments-->
+ <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+      <li  class="breadcrumb-item"><a href="{% url 'home' %}">  press hear to go to All post</a></li></ol>
+      <li class="breadcrumb-item active" aria-current="page">{{ post_detail.title }}</li>
+  </ol>
+</nav>
+
+<div class="container">
+      <div class="card text-white bg-dark mb-3" style="max-width: 60rem;"><h1>this is good</h1>
+          <div class="card-header">{{ post_detail.date_published }}</div>
+          <div class="card-body">
+              <h5 class="card-title">
+                  {{ post_detail.title }}
+              </h5>
+          <p class="card-text">{{ post_detail.body }}</p>
+          </div>
+      </div>
+</div>
+<!-- For Comments - This code will show the NUMBER OF COMMENTS POSTED.  -->
+{% get_comment_count for object as comment_count %}
+    <div class="py-4 text-center">
+   
+    <!-- Comment count -->
+    &nbsp;&sdot;&nbsp;
+    {{ comment_count }} comment{{ comment_count|pluralize }}
+    ha{{ comment_count|pluralize:"s,ve"}} been posted.
+    </div>
+ 
+    <!-- Posted comment list - This code will show the POSTED COMMENTS -->
+    {% if comment_count %}
+        <ul class="media-list shadow p-3 mb-5 bg-white rounded container">
+        {% render_xtdcomment_tree for object %}
+        </ul>
+    {% endif %}
+     <!-- Post your comment - This code will show the FORM TO POST COMMENTS -->
+     <div class="comment mt-3 shadow p-3 mb-5 bg-white rounded container">
+      <h4 class="text-center mb-4">Your comment</h4>
+      <div class="card pt-4">
+          {% render_comment_form for object %}
+
+          
+      </div>
+  </div>
+ 
       </div>
     </div>
+    
     {% block sidebar %} {% include 'soniablog/sidebar.html' %} {% endblock sidebar %}
+  
+  
   </div>
+  
 </div>
+<h1>hello</h1>
+
+ 
 
 {% endblock content %}

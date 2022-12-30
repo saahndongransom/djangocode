@@ -42,6 +42,15 @@ INSTALLED_APPS = [
     'paypal.standard.ipn',
     'crispy_forms',
     'tinymce',
+    'django.contrib.sites',
+
+    # django_comments_xtd and django_comments order should be same
+    'django_comments_xtd',
+    'django_comments',
+    'taggit',
+    'django_social_share',
+    
+    
     
     ]
 
@@ -140,3 +149,41 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 #paypal setting
 PAYPAL_TEST = True
 PAYPAY_RECEIVES_EMAIL ='saahndongransom@gmail.com'
+
+
+
+SITE_ID = 1
+COMMENTS_APP = 'django_comments_xtd'
+
+COMMENTS_XTD_MAX_THREAD_LEVEL = 2
+
+COMMENTS_XTD_CONFIRM_EMAIL = False
+
+# Either enable sending mail messages to the console:
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# or smpt EmailBackend
+
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# Or set up the EMAIL_* settings so that Django can send emails:
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = "587"
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'saahndongransom@gmail.com'
+EMAIL_HOST_PASSWORD = 'ymsezdinahtijcly'
+DEFAULT_FROM_EMAIL = "Helpdesk <helpdesk@yourdomain>"
+
+
+
+#paypay setting
+PAYPAL_TEST = True
+PAYPAl_RECEIVER_EMAIL = 'sandbox@gmail.com'
+
+TEMPLATE_LOADERS = (
+    'django.article_utils.loaders.soniablog.load_template_source',
+)
+
+
+
+
+

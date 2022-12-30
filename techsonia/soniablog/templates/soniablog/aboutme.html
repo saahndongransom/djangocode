@@ -1,6 +1,8 @@
 {% extends 'soniablog/base.html'%}
 {% block content %}
 {% load static %}
+
+{{ object.get_readtime }}
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -15,7 +17,7 @@
 			<script src="dist/html5shiv.js"></script>
 			<![endif]-->			
 	</head>
-	<body>
+	<body bgcolor="red">
         
 		<div class="container">
 			<div class="header">
@@ -26,6 +28,8 @@
 			</div><!-- end image-->
 			<div class="intro column">
 				<h2>Introduction</h2>
+				
+				{{ object.get_readtime }}
 				<p>
 					I am a 28 year old finnish web developer with science and art background. I love to spend my free time renovating my home, playing and going on long walks with my dog. I love scifi and fantasy literature and
 					series. 

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <title>Newhatch communities blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,9 +8,15 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/flatly/bootstrap.min.css">
 
   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/sketchy/bootstrap.min.css"> -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body>
+  <ba
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="mainNav">
     <div class="container-fluid">
@@ -21,7 +26,7 @@
           <li class="nav-item text-black">
             <!-- <a class="nav-link text-black font-weight-bold" href="{% url 'home' %}">home</a>  -->
             <!-- <a class="navbar-brand" href="{% url 'home' %}">Home</a> -->
-            <a class="nav-link text-black font-weight-bold" href="{% url 'home' %}">home</a>
+            <a class="nav-link text-black font-weight-bold" href="{% url 'home' %}"><i class="fa fa-home" style="font-size:24px"></i></a>
           </li>
           <li>
             <a class="nav-link text-black font-weight-bold" href="{% url 'aboutme' %}">about me</a>
@@ -32,98 +37,16 @@
           <li class="nav-item text-black">
             <a class="nav-link text-black font-weight-bold" href="{% url 'contact' %}">Contact</a> 
           </li>
+          <li class="nav-item text-black">
+            <a class="nav-link text-black font-weight-bold" href="{% url 'home1' %}">home1</a> 
+          </li> 
         </ul>
-      </div>
+      </div> 
     </div>
   </nav>
   {% block content %}
   {% endblock content %}
-
-
-  <!-- Content Goes here -->
-   <!-- Footer -->
-  
-
-  
- <!-- Remove the container if you want to extend the Footer to full width. -->
-
-
-  <footer class="bg-dark text-center text-white">
-    <!-- Grid container -->
-    <div class="container p-4 pb-0">
-      <!-- Section: Form -->
-      <section class="">
-        <form action="{% url 'subscribe' %}" method="post">
-          {% csrf_token %}
-        
-          <!--Grid row-->
-          <div class="row d-flex justify-content-center">
-            <!--Grid column-->
-            <div class="col-auto">
-              <p class="pt-2">
-                <strong>Sign up for our newsletter</strong>
-              </p>
-            </div>
-            <!--Grid column-->
-
-            <!--Grid column-->
-            <div class="col-md-5 col-12">
-              <!-- Email input -->
-              <div class="form-outline form-white mb-4">
-                <input type="email" id="form5Example2" class="form-control" />
-                <label class="form-label" for="form5Example2">Email address</label>
-              </div>
-            </div>
-            <!--Grid column-->
-
-            <!--Grid column-->
-            <div class="col-auto">
-              <!-- Submit button -->
-              <button type="submit" class="btn btn-outline-light mb-4">
-                Subscribe
-              </button>
-            </div>
-           <section >
-            <i class='fas fa-envelope-open' style='font-size:24px'></i>
-            <h6>Tel:(237)650473572</h6>
-            
-              <a href="#" class="fa fa-facebook"></a>
-
-            <p></p><h6>Email:saahndongransom@gmail.com</h6>
-            <i class="fa fa-envelope" aria-hidden="true"></i>
-           </section>
-            <!--Grid column-->
-          </div>
-          <!--Grid row-->
-        </form>
-      </section>
-      <!-- Section: Form -->
-    </div>
-    <!-- Grid container -->
-
-    <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2022 Copyright:
-      <a class="text-white" href="site.html">newhatchtech.com</a>
-     
-    </div>
-    <!-- Copyright -->
-
-    
-  
-  </footer>
-
-</div>
-{% include 'soniablog/footer.html' %}
-<!-- End of .container -->
 </body>
-
-
-	
-    
-          
-
-
-  
+{% include 'soniablog/footer.html' %}
 </html>
 
