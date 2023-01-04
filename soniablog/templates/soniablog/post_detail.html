@@ -1,0 +1,113 @@
+{% extends 'soniablog/base.html' %} 
+{% load comments %}
+{% load comments_xtd %}
+{% load static %}
+{% load social_share %}
+{% block content %}
+<link rel="stylesheet"  href="{%  static  'css/felia.css'  %}">
+	 <link rel="stylesheet" href="felia.css" />
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 card mb-4  mt-3 left  top">
+      <div class="card-body">
+        <h1>{% block title %} {{ object.title }} {% endblock title %}</h1>
+        <p class=" text-muted">{{ post.author }} | {{ post.created_on }}</p>
+        <p class="card-text ">{{ object.content | safe }}</p>
+      
+        tags- {{post.tags.all}} <br>
+       
+       
+        <div class="Tags gap-xy-2 text-center mt-6 ">
+            {% for cat in post.categories.all %}
+            <a href="# " class="badge badge-pill badge-secondry "> {{cat}}</a> {% endfor %}
+        </div>
+
+
+
+        <!--Start somilar posts-->
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                
+            </div>
+        </div>
+
+        <div class="row">
+           
+           {% for post in similar_posts %}
+            <div class="col-lg-4 col-md-6 col-sl-12 p-3">
+                <div class="border rounded">
+                    <small class="text-primary mt-2 p-4">{{post.title}}</small>
+                    <p class="p-4">{{post.overview|safe|slice:":150"}}<b>[...]</b></p>
+                    <a href="{{post.post_link}}" class="p-4">Read More <i class="mdi mdi-cheveron-right"></i> </a>
+                    <div class="border-top p-3 mt-3 d-flex">
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt=""
+                            style="max-width:50px;max-height:50px;" class="rounded-pill img-fluid mr-3">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <h6>{{post.author.user.username|title}}</h6>
+                            </div>
+                            <div class="form-group ml-5">
+                                <small>{{post.date|date}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        
+        </div>
+       
+        <!--comments-->
+        
+             <h1>
+            <ol style="background-color:wheat ;text-align:center;text-decoration;hover:" >
+                {% post_to_facebook object_or_url "Post to Facebook!" %}
+                {% post_to_whatsapp  object_or_url "Share To whatsapp" %}
+                 {% post_to_reddit  object_or_url "Share To Reddit" %} 
+                 
+            </ol>
+             </h1>
+
+<br>
+<div class="box"> <h5><a style="color: white;" href="{% url 'home' %}"> All post</a></h5></div>
+
+<!-- For Comments - This code will show the NUMBER OF COMMENTS POSTED.  -->
+{% get_comment_count for object as comment_count %}
+    <div class="py-4 text-center">
+   
+    <!-- Comment count -->
+    &nbsp;&sdot;&nbsp;
+    {{ comment_count }} comment{{ comment_count|pluralize }}
+    ha{{ comment_count|pluralize:"s,ve"}} been posted.
+    </div>
+ 
+    <!-- Posted comment list - This code will show the POSTED COMMENTS -->
+    {% if comment_count %}
+        <ul class="media-list shadow p-3 mb-5 bg-white rounded container">
+        {% render_xtdcomment_tree for object %}
+        </ul>
+    {% endif %}
+     <!-- Post your comment - This code will show the FORM TO POST COMMENTS -->
+     <div class="comment mt-3 shadow p-3 mb-5 bg-white rounded container">
+      <h4 class="text-center mb-4">Your comment</h4>
+      <div class="card pt-4">
+          {% render_comment_form for object %}
+
+          
+      </div>
+  </div>
+ 
+      </div>
+    </div>
+    
+    {% block sidebar %} {% include 'soniablog/sidebar.html' %} {% endblock sidebar %}
+  
+  
+  </div>
+  
+</div>
+
+
+ 
+
+{% endblock content %}
