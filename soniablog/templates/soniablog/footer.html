@@ -1,12 +1,16 @@
 
+
 {% block content %}
+
 <footer class="bg-dark text-center text-white">
     <!-- Grid container -->
+    
     <div class="container p-4 pb-0">
       <!-- Section: Form -->
       <section class="">
-        <form action="{% url 'subscribe_newsletter' %}" method="post">
-          {% csrf_token %}
+      
+        <form action="{% url 'subscribe' %}" method="post"> 
+         {% csrf_token %} 
         
           <!--Grid row-->
           <div class="row d-flex justify-content-center">
@@ -19,7 +23,12 @@
             <!--Grid column-->
 
             <!--Grid column-->
-            <div class="col-md-5 col-12">
+            <div class="col-md-2 col-2">
+              <div class="form-outline form-white mb-2">
+                <input type="name" id="form5Example2" class="form-control" />
+                <label class="form-label" for="form5Example2">name</label>
+              </div>
+            </div>
               <!-- Email input -->
               <div class="form-outline form-white mb-4">
                 <input type="email" id="form5Example2" class="form-control" />
@@ -53,6 +62,7 @@
           <!--Grid row-->
         </form>
       </section>
+      
       <!-- Section: Form -->
     
     <!-- Grid container -->
@@ -65,7 +75,7 @@
      
     </div>
     <!-- Copyright -->
-
+  
 		
 		 </footer>
     

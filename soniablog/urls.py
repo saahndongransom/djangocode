@@ -8,8 +8,8 @@ from django.urls import path , include
 #app_name = 'home'
 
 urlpatterns = [
-
-    path("habiba",views.habiba,name="habiba"),
+    path("njam", views.njam, name="njam"),
+   # path("habiba",views.habiba,name="habiba"),
     path('footer.html',views.footer,name='footer'),
     path("newsletter", views.newsletter, name="newsletter"),
     path('', views.PostList.as_view(), name='home'),
@@ -18,7 +18,7 @@ urlpatterns = [
     path('policy/', views.policy, name='policy'),
     path('newhatchtech.html',views.site, name='newhatchtech'),
     path('aboutme.html',views.aboutme,name='aboutme'),
-    path('subscribe', views.subscribe, name='subscribe_newsletter'),
+    path('subscribe/', views.subscribe, name='subscribe'),
     path('comments/', include('django_comments_xtd.urls')),
     path('paypal/', include('paypal.standard.ipn.urls')),
     path('home1/', views.home1, name="home1"),

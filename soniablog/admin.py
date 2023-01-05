@@ -7,6 +7,8 @@ from . models import CustomUser, Comment
 from . models import subscribers
 
 
+
+
 # Customize the way the admin panel looks
 class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'status', 'created_on')  # displays the properties mentioned in the tuple
@@ -16,7 +18,9 @@ class PostAdmin(admin.ModelAdmin):
 
 class SubscribedUsersAdmin(admin.ModelAdmin):
     list_display = ('email', 'name', 'created_date')
-    
+
+
+
 
 
 

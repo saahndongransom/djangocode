@@ -62,11 +62,11 @@ class PostForm(forms.ModelForm):
         ]
     
 
-class subscribersform(forms.ModelForm):
+class SubscibersForm(forms.ModelForm):
     class Meta:
         model = subscribers
         fields = ['email',]
-  
+ 
 
 
 

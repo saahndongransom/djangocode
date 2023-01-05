@@ -15,9 +15,12 @@ from django.core.mail import EmailMessage
 from .form import NewsletterForm
 from django.views.decorators.csrf import csrf_exempt
 import uuid
+from . form import SubscibersForm
 from django.urls import reverse
 from django import forms
-from .form import subscribersform
+
+
+
 
 
 
@@ -108,7 +111,19 @@ def subscribe(request):
         return redirect(request.META.get("HTTP_REFERER", "/"))
 
 
-
+def gggsubscribe(request):
+    if request.method == 'POST':
+        form = SubscibersForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Subscription Successful')
+            return redirect('/')
+    else:
+        form = SubscibersForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'soniablog/njam.html', context)
  
 
 
@@ -191,18 +206,16 @@ def home1(request):
 
 
 #new
-def habiba(request):
+def njam(request):
     if request.method == 'POST':
-        form = subscribersform(request.POST)
+        form = SubscibersForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request,'subscription successful')
+            messages.success(request, 'Subscription Successful')
             return redirect('/')
     else:
-        form = subscribersform()
-    context= {
-        'form':form,
-
+        form = SubscibersForm()
+    context = {
+        'form': form,
     }
-    return render(request,'soniablog/habiba.html', context)
-    
+    return render(request, 'soniablog/njam.html', context)
